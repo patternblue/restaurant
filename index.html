@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	 	<meta charset="utf-8">
+
+	  	<!-- <title>Restaurant</title> -->
+	  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	  	<script type="text/javascript">
+
+			$(document).ready(theMain);
+			function theMain(){
+				$("#content").append("<ul class='tabbedNav'><li id='contact'><a>Contact</a></li><li id='menu'><a>Menu</a></li></ul>");
+				// console.log($().className());
+				$('.tabbedNav').on('click', 'li', changeClass);
+
+
+				//functions:
+				function changeClass(){ 
+					// console.log("test");
+					$(this).parent().find('li').addClass('');
+					$(this).addClass("active");
+					console.log($("#content").html());
+				};
+
+				// // CSS stylings:
+				// $(".active").css({
+				// 	''
+				// });
+			}
+
+	  	</script>
+
+	</head>
+
+	<body>
+		<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+		<div id="content">
+			<h1>Smiley Sushi Bar</h1>
+			<p>Best sushi dishes in the city! Endless Entertainment sure to leave you happy and smiley!</p>
+		</div>
+	</body>
+</html>
