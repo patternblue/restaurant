@@ -2,39 +2,78 @@
 <html>
 	<head>
 	 	<meta charset="utf-8">
-
-	  	<!-- <title>Restaurant</title> -->
+	  	<title>Restaurant: Smiley Sushi Bar</title>
 	  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	  	<script type="text/javascript">
-
+		<script type="text/javascript">
 			$(document).ready(theMain);
 			function theMain(){
-				$("#content").append("<ul class='tabbedNav'><li id='contact'><a>Contact</a></li><li id='menu'><a>Menu</a></li></ul>");
-				// console.log($().className());
-				$('.tabbedNav').on('click', 'li', changeClass);
 
+				//Build navigation and content container
+				$("#container").append("<ul class='tabbedNav'><li id='menu' class='active'><a>Menu</a></li><li id='contact'><a>Contact</a></li></ul><div id='content'></div>");
+				changeContent($("#container").find('.active'));
+
+				//Display content when a tab is clicked
+				$('.tabbedNav').on('click', 'li', changeClassAndContent);
 
 				//functions:
-				function changeClass(){ 
-					// console.log("test");
-					$(this).parent().find('li').addClass('');
-					$(this).addClass("active");
-					console.log($("#content").html());
+				function changeClassAndContent(){ 
+					changeClass(this);
+					changeContent(this);
 				};
 
-				// // CSS stylings:
-				// $(".active").css({
-				// 	''
-				// });
-			}
-
+				// change active tab in tabbed navigation
+				function changeClass(caller){ 
+					$(caller).parent().find('li').removeClass('active');
+					$(caller).addClass("active");
+				};
+				// change active content in tabbed navigation
+				function changeContent(caller){ 
+					$theId = $(caller).attr("id");
+					$content = $('#content');
+					switch ($theId){
+						case "contact":
+							$content.html('Reach us at: 555.234.4335');
+							break;
+						default: 
+							$content.html('Platters - happy helpings of snapper, salmon, and yellowtail!');
+					}; 
+				};
+			};
 	  	</script>
-
+	  	<style type="text/css">
+	  		.tabbedNav{ 
+	  			color: #333333;
+				border-bottom: 1px solid black; 
+				margin: 12px 0px 0px 0px; 
+				padding: 0px;
+				padding-left: 10px;
+	  		}
+		  	.tabbedNav li{
+				display:inline;
+				background: #99bc33;
+				padding: 0px 10px;
+				margin: 0 1px;
+				overflow: hidden; 
+				list-style-type: none;
+			}
+			.tabbedNav li:hover{
+				color: #888888;
+				background: #bbde55;
+			}
+			.tabbedNav .active{
+				background: #e2369f;
+			}
+			.tabbedNav .active:hover { 
+				background: #f347af; 
+			}
+			#content{
+				margin: 50px 0 0 50px;
+			}
+	  	</style>
 	</head>
-
 	<body>
-		<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-		<div id="content">
+		<div id="container">
+			<img src="img/eating-sushi-smiley-emoticon.gif" alt="Smiley Sushi Face">
 			<h1>Smiley Sushi Bar</h1>
 			<p>Best sushi dishes in the city! Endless Entertainment sure to leave you happy and smiley!</p>
 		</div>
